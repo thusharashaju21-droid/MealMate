@@ -1,0 +1,86 @@
+# =====  user endpoints  ======
+
+#api call for registering or creating a user 
+
+###
+POST http://127.0.0.1:8000/mealplanner/signup/
+Content-Type: application/json
+
+{
+
+    "username":"user4",
+    "email":"djangouser@gmail.com",
+    "password":"user123"
+}
+
+#api call for token
+###
+POST http://127.0.0.1:8000/mealplanner/login/
+Content-Type: application/json
+
+{
+    "username" : "user6",
+    "password":"user23"
+}
+
+#api call for listing the user 
+
+###
+GET http://127.0.0.1:8000/mealplanner/me/
+Accept: application/json
+Authorization: Token 78e76518929750f40dd30a937eb097fbf9448dc1
+#api call for listing the meal-entries of user1
+###
+GET http://127.0.0.1:8000/mealplanner/meal-entries/
+Accept: application/json
+Authorization: Token 78e76518929750f40dd30a937eb097fbf9448dc1
+#api call for creating a foodlog 
+
+###
+POST http://127.0.0.1:8000/mealplanner/meal-entries/
+Content-Type: application/json
+Authorization: Token 78e76518929750f40dd30a937eb097fbf9448dc1
+
+{
+    "title": "Oats with Milk",
+    "calorie": 250,
+    "meal_type": "BREAKFAST",
+    "serving_size": 1
+}
+
+#api call for fetching a foodlog
+###
+GET http://127.0.0.1:8000/mealplanner/meal-entries/7/
+Accept: application/json
+Authorization: Token 78e76518929750f40dd30a937eb097fbf9448dc1
+
+#api call for updating a foodlog
+###
+PUT http://127.0.0.1:8000/mealplanner/meal-entries/1/
+Content-Type: application/json
+Authorization: Token 78e76518929750f40dd30a937eb097fbf9448dc1
+
+{
+  "id": 1,
+    "title": "Chicken Curry",
+    "calorie": 250,
+    "meal_type": "LUNCH",
+  "serving_size": "1 bowl",
+  "created_at": "2026-10-11T06:51:18.064900Z",
+  "updated_at": "2026-10-11T06:51:18.064900Z",
+  "owner": 2
+}
+
+#api call for deleting a foodlog 
+
+###
+DELETE http://127.0.0.1:8000/mealplanner/meal-entries/5/
+Accept: application/json
+Authorization: Token 78e76518929750f40dd30a937eb097fbf9448dc1
+
+
+#api call for summary/category
+###
+GET http://127.0.0.1:8000/mealplanner/meals/summary/  
+Accept: application/json
+Authorization: Token 78e76518929750f40dd30a937eb097fbf9448dc1
