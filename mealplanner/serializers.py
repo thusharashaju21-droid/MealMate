@@ -1,25 +1,28 @@
-from django.contrib.auth.models import User
-from rest_framework import serializers
-from mealplanner.models import MealEntry
 
-class UserSerializers(serializers.ModelSerializer):
+from rest_framework import serializers
+
+from django.contrib.auth.models import User
+
+from mealplanner.models import FoodLog
+
+class SignUpSerializer(serializers.ModelSerializer):
 
     class Meta:
 
-        model= User
+        model = User
 
-        fields = ["username","email","password"]
+        fields = ["id","username","email","password"]
 
         read_only_fields = ["id"]
 
+class FoodLogSerializer(serializers.ModelSerializer):
 
-class MealEntrySerializer(serializers.ModelSerializer):
-
+    owner = serializers.StringRelatedField()
 
     class Meta:
 
-        model = MealEntry
+        model = FoodLog
 
         fields = "__all__"
 
-        read_only_fields = ["id","owner","created_at","updated_at"]
+        read_only_fields = ["id","owner","created_at"]

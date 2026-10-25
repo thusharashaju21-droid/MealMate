@@ -1,19 +1,30 @@
+
 from django.urls import path
 
-from mealplanner.views import SignUpView,GetMeView
-from mealplanner.views import MealEntryListCreate,MealEntryRetrieveUpdateDeleteView
-from mealplanner.views import MealSummaryView
+from mealplanner.views import RegisterView,GetMeView,FoodLogListCreateView,FoodLogRetrieveUpdateDeleteView,FoodLogSummaryView,DietPlanView
 
-from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework.authtoken.views import ObtainAuthToken
 
+urlpatterns = [
 
-urlpatterns=[
+    #  register view
+    path("register/",RegisterView.as_view()),
 
-    path('signup/',SignUpView.as_view()),
-    path('me/',GetMeView.as_view()),
-    path('meal-entries/',MealEntryListCreate.as_view()),
-    path('meal-entries/<int:pk>/',MealEntryRetrieveUpdateDeleteView.as_view()),
-    path("meals/summary/", MealSummaryView.as_view()),
+    #  getme view
+    path("me/",GetMeView.as_view()),
 
-    path("login/", obtain_auth_token),
+    # foodlog list,create view
+    path("foodlog/",FoodLogListCreateView.as_view()),
+
+    # foodlog retrieve,update,delete view
+    path("foodlog/<int:pk>/",FoodLogRetrieveUpdateDeleteView.as_view()),
+
+    # token authentication
+    path("token/",ObtainAuthToken.as_view()),
+
+    # summary view
+    path("foodlog/summary/",FoodLogSummaryView.as_view()),
+
+    # dietplan view
+    path("foodlog/diet/",DietPlanView.as_view()),
 ]
